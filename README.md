@@ -18,6 +18,12 @@ Self-Driving Car Engineer Nanodegree Program
    some sample inputs in 'data/'.
     - eg. `./UnscentedKF ../data/obj_pose-laser-radar-synthetic-input.txt`
 
+## Setting
+1.   Process noise standard deviation longitudinal acceleration in m/s^2.
+The initial value 30 is too big. I tuned it to 0.35 which can pass all three threshold.
+2.   Process noise standard deviation yaw acceleration in rad/s^2 
+The initial value 30 is too big. I tuned it to 0.53 which can pass all three threshold.
+
 ## Output
 ![data obj_pose-laser-radar-synthetic-input.txt output](figure_1.png)
 Accuracy - RMSE: [0.0589613, 0.0898863,  0.330667,  0.215506]
