@@ -18,6 +18,22 @@ Self-Driving Car Engineer Nanodegree Program
    some sample inputs in 'data/'.
     - eg. `./UnscentedKF ../data/obj_pose-laser-radar-synthetic-input.txt`
 
+## Output
+![data obj_pose-laser-radar-synthetic-input.txt output](figure_1.png)
+Accuracy - RMSE: [0.0589613, 0.0898863,  0.330667,  0.215506]
+
+*Threshold*: RMSE <= [0.09, 0.10, 0.40, 0.30]
+
+![data sample-laser-radar-measurement-data-1.txt ouput](figure_2.png)
+Accuracy - RMSE: [0.0789634, 0.0878292, 0.604795, 0.585179]
+
+*Threshold*: RMSE <= [0.09, 0.09, 0.65, 0.65]
+
+![data sample-laser-radar-measurement-data-2.txt ouput](figure_3.png)
+Accuracy - RMSE: [0.185743, 0.18929, 0.3078, 0.433144]
+
+*Threshold*: RMSE <= [0.20, 0.20, 0.55, 0.55]
+
 ## Editor Settings
 
 We've purposefully kept editor configuration files out of this repo in order to
