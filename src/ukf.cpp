@@ -67,6 +67,21 @@ UKF::UKF() {
 
   NIS_laser_ = 0;
 
+  /* You'll also need to calculate the lidar NIS.
+  */
+  int n_z_lidar = 2;
+  //add measurement noise covariance matrix for lidar
+  R_lidar_ = MatrixXd(n_z_lidar, n_z_lidar);
+  R_lidar_ <<    std_laspx_*std_laspx_, 0,
+          0, std_laspy_*std_laspy_;
+
+  int n_z_radar = 3;
+  //add measurement noise covariance matrix for radar
+  R_radar_ = MatrixXd(n_z_radar,n_z_radar);
+  R_radar_ <<    std_radr_*std_radr_, 0, 0,
+          0, std_radphi_*std_radphi_, 0,
+          0, 0,std_radrd_*std_radrd_;
+
   //create matrix with predicted sigma points as columns
   Xsig_pred_ = MatrixXd(n_x_, n_sig_);
 
@@ -292,10 +307,10 @@ void UKF::UpdateLidar(MeasurementPackage meas_package) {
   }
 
   //add measurement noise covariance matrix
-  MatrixXd R = MatrixXd(n_z,n_z);
-  R <<    std_laspx_*std_laspx_, 0,
-          0, std_laspy_*std_laspy_;
-  S = S + R;
+//  MatrixXd R = MatrixXd(n_z,n_z);
+//  R <<    std_laspx_*std_laspx_, 0,
+//          0, std_laspy_*std_laspy_;
+  S = S + R_lidar_;
 
   //create matrix for cross correlation Tc
   MatrixXd Tc = MatrixXd(n_x_, n_z);
@@ -399,11 +414,11 @@ void UKF::UpdateRadar(MeasurementPackage meas_package) {
   }
 
   //add measurement noise covariance matrix
-  MatrixXd R = MatrixXd(n_z,n_z);
-  R <<    std_radr_*std_radr_, 0, 0,
-          0, std_radphi_*std_radphi_, 0,
-          0, 0,std_radrd_*std_radrd_;
-  S = S + R;
+//  MatrixXd R = MatrixXd(n_z,n_z);
+//  R <<    std_radr_*std_radr_, 0, 0,
+//          0, std_radphi_*std_radphi_, 0,
+//          0, 0,std_radrd_*std_radrd_;
+  S = S + R_radar_;
 
   //create matrix for cross correlation Tc
   MatrixXd Tc = MatrixXd(n_x_, n_z);
